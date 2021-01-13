@@ -817,7 +817,7 @@ export default function Home() {
 
 						<p className={classes.contactText} style={ darkMode ? {color: darkText} : {} }>ayo4oyo@gmail.com</p>
 
-						<Link href="https://www.ayodeleogunkanmi.vercel.app" passHref>
+						<Link href="https://ayodeleogunkanmi.vercel.app" passHref>
 							<p className={classes.contactText} style={darkMode ? { color: darkText } : {}}>www.ayodeleogunkanmi.vercel.app</p>						
 						</Link>
 
