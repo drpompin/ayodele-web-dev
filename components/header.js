@@ -109,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
         transition: '0.3s',
         textAlign: 'right',
         padding: '1rem',
+        fontFamily: 'Asap Condensed, serif, sans-serif',
 
         '&:hover': {
             backgroundColor: appColor,
@@ -196,31 +197,31 @@ function Header({
 
                     <List className={classes.mobileMenuList}>
                         <ListItem onClick={() => aboutScrollFunction()} className={classes.mobileListItem} style={darkMode ? { color: darkText } : {}}>
-                            <ListItemText>
+                            <ListItemText disableTypography>
                                 Ayodele
                             </ListItemText>
                         </ListItem>
 
                         <ListItem onClick={() => toolScrollFunction()} className={classes.mobileListItem}style={ darkMode ? { color: darkText } : {} }>
-                            <ListItemText>
+                            <ListItemText disableTypography>
                                 Toolbox
                             </ListItemText>
                         </ListItem>
 
                         <ListItem onClick={() => projectScrollFunction()} className={classes.mobileListItem}style={ darkMode ? { color: darkText } : {} }>
-                            <ListItemText>
+                            <ListItemText disableTypography>
                                 Projects
                             </ListItemText>
                         </ListItem>
 
                         <ListItem onClick={() => reachScrollFunction()} className={classes.mobileListItem}style={ darkMode ? { color: darkText } : {} }>
-                            <ListItemText>
+                            <ListItemText disableTypography>
                                 Reach Out
                             </ListItemText>
                         </ListItem>
 
                         <ListItem className={classes.mobileListItem}>
-                            <ListItemText>
+                            <ListItemText disableTypography>
                                 <Tooltip title="Download Resume">
                                     <a href="/files/Resume.pdf" onClick={() => closeMobileDropdown()} style={{ textDecoration: 'none' }} download="Ayodele-resume.pdf">
                                         <CloudDownloadOutlinedIcon style={darkMode ? { color: darkText } : {color: appColor, '&:hover': { color: '#fff' } }} />
@@ -230,7 +231,7 @@ function Header({
                         </ListItem>
 
                         <ListItem className={classes.mobileListItem}>
-                            <ListItemText>
+                            <ListItemText disableTypography>
                                 {   
                                     !darkMode &&
                                     <WbIncandescentIcon onClick={() => handleDarkMode()} />
