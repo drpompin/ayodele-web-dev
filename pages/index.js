@@ -539,6 +539,8 @@ export default function Home() {
 		<Layout>
 			<Head>
 				<title>{siteTitle}</title>
+				{/* <link rel="preconnect" href="https://fonts.gstatic.com"> */}
+				<link href="https://fonts.googleapis.com/css2?family=Asap+Condensed&display=swap" rel="stylesheet" />
 			</Head>
 
 			<div ref={headerRef} id="myHeader" className={classes.sticky} >

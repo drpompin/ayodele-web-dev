@@ -2,7 +2,7 @@ html,
 body {
 	padding: 0;
 	margin: 0;
-	font-family: fantasy, serif, sans-serif;
+	/* font-family: fantasy, serif, sans-serif; */
 	line-height: 2.0;
 	font-size: 1rem !important;
 	color: #4f4f4f;
@@ -11,7 +11,8 @@ body {
 
 * {
 	box-sizing: border-box;
-	font-family: fantasy, serif, sans-serif;
+	/* font-family: fantasy, serif, sans-serif; */
+	font-family: Asap Condensed, serif, sans-serif;
 	font-size: 16px;
 	letter-spacing: 0.5px;
 }
