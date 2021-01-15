@@ -197,7 +197,7 @@ function Header({
                     <List className={classes.mobileMenuList}>
                         <ListItem onClick={() => aboutScrollFunction()} className={classes.mobileListItem} style={darkMode ? { color: darkText } : {}}>
                             <ListItemText>
-                                About
+                                Ayodele
                             </ListItemText>
                         </ListItem>
 

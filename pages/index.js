@@ -67,13 +67,15 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	imageStyle: {
-		width: '40%',
+		width: 400,
 		borderRadius: '50%',
 		boxShadow: '0px 1px 5px #989796',
-		height: '',
+		height: 400,
+		overflow: 'hidden',
 
 		[theme.breakpoints.down("xs")]: {
-			width: '60%'
+			width: 250,
+			height: 250,
 		}
 	},
 
@@ -84,7 +86,6 @@ const useStyles = makeStyles((theme) => ({
 		margin: '0',
 		padding: '5rem 15%',
 		backgroundColor: '#f6efe8',
-		// backgroundColor: '#f6efe8',
 
 		[theme.breakpoints.down("xs")]: {
 			padding: '2rem 1rem',
@@ -177,13 +178,11 @@ const useStyles = makeStyles((theme) => ({
 	codingText: {
 		fontWeight: 400,
 		lineHeight: 1.44444444,
-		letterSpacing: '-0.5px',
 		fontSize: '1.125rem',
 		textAlign: 'justify',
 
 		[theme.breakpoints.down("xs")]: {
 			fontSize: '1.125rem',
-			// letterSpacing: 'normal',
 			marginTop: 0,
 		}
 	},
@@ -233,10 +232,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	projectSection: {
-		// backgroundColor: '#f5f5f5',
 		minHeight: 300,
 		padding: '20px 15%',
-		// backgroundColor: '#edf0f5',
 
 		[theme.breakpoints.down("md")]: {
 			padding: 0,
@@ -294,8 +291,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	projectCardText: {
-		lineHeight: 1,
-		letterSpacing: '-0.5px',
+		lineHeight: 1.44444444,
 		padding: '10px 20px 20px',
 		textAlign: 'justify',
 		fontSize: '1.125rem',
@@ -335,7 +331,6 @@ const useStyles = makeStyles((theme) => ({
 
 	footerSection: {
 		width: '100%',
-		// minHeight: 400,
 		backgroundColor: 'tomato',
 		display: 'flex',
 		justifyContent: 'center',
@@ -348,7 +343,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	contactContainer: {
-		// height: 200,
 		width: '60%',
 		backgroundColor: '#000',
 		borderRadius: 3,
@@ -361,7 +355,6 @@ const useStyles = makeStyles((theme) => ({
 
 	contactHeader: {
 		color: '#fff',
-			// marginBottom: 5,
 		fontWeight: 600,
 	},
 
@@ -369,7 +362,6 @@ const useStyles = makeStyles((theme) => ({
 		color: '#fff',
 		marginBottom: 15,
 		fontWeight: 600,
-		letterSpacing: 0.1,
 	},
 
 	contactText: {
@@ -377,7 +369,6 @@ const useStyles = makeStyles((theme) => ({
 		margin: 0,
 		marginBottom: 5,
 		fontWeight: 600,
-		letterSpacing: 0.5,
 		overflowWrap: 'break-word',
 		cursor: 'pointer',
 		'&:hover': {
@@ -425,7 +416,6 @@ const useStyles = makeStyles((theme) => ({
 		cursor: 'pointer',
 
 		'&:hover': {
-			// opacity: '0.8',
 			color: 'blue',
 			textDecoration: 'underline',
 		},
@@ -486,7 +476,7 @@ export default function Home() {
 		if (baseRef.current) {
 			window.scrollTo({
 				behavior: "smooth",
-				top: baseRef.current.offsetTop,
+				top: baseRef.current.offsetTop - 60,
 			});
 		}
 	}
@@ -496,7 +486,7 @@ export default function Home() {
 		if (aboutRef.current) {
 			window.scrollTo({
 				behavior: "smooth",
-				top: aboutRef.current.offsetTop,
+				top: aboutRef.current.offsetTop - 60,
 			});
 		}
 	}
@@ -506,7 +496,7 @@ export default function Home() {
 		if (toolRef.current) {
 			window.scrollTo({
 				behavior: "smooth",
-				top: toolRef.current.offsetTop,
+				top: toolRef.current.offsetTop - 65,
 			});
 		}
 	}
@@ -516,7 +506,7 @@ export default function Home() {
 		if (projectRef.current) {
 			window.scrollTo({
 				behavior: "smooth",
-				top: projectRef.current.offsetTop,
+				top: projectRef.current.offsetTop - 60,
 			});
 		}
 	}
@@ -591,11 +581,13 @@ export default function Home() {
 				</div>
 
 				<div className={classes.imageContainer}>
-					<img
-						src="/images/profile-passport.png"
-						className={classes.imageStyle}
-						alt={name}
-					/>
+					<Zoom>
+						<img
+							src="/images/profile-passport.png"
+							className={classes.imageStyle}
+							alt={name}
+						/>
+					</Zoom>
 				</div>
 			</section>
 
