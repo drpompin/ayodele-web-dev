@@ -8,6 +8,10 @@ import Zoom from 'react-reveal/Zoom'
 import Bounce from 'react-reveal/Bounce'
 import Layout, { siteTitle } from '../components/layout'
 import Header from '../components/header'
+import GitHubIcon from '@material-ui/icons/GitHub'
+import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined'
+import LinkedInIcon from '@material-ui/icons/LinkedIn'
+import EmailIcon from '@material-ui/icons/Email'
 
 
 const name = 'Ayodele'
@@ -37,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: `calc(100vh - 60px)`,
 
 		[theme.breakpoints.down("xs")]: {
-			padding: '20px 1rem',
+			padding: '20px 2rem',
 		}
 	},
 
@@ -88,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#f6efe8',
 
 		[theme.breakpoints.down("xs")]: {
-			padding: '2rem 1rem',
+			padding: '2rem',
 		}
 	},
 
@@ -240,7 +244,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 
 		[theme.breakpoints.down("xs")]: {
-			padding: '20px 1rem',
+			padding: '20px 2rem',
 		},
 	},
 
@@ -338,7 +342,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: '100px 15%',
 
 		[theme.breakpoints.down("xs")]: {
-			padding: '60px 20px',
+			padding: '60px 2rem',
 		}
 	},
 
@@ -367,10 +371,15 @@ const useStyles = makeStyles((theme) => ({
 	contactText: {
 		color: '#fff',
 		margin: 0,
-		marginBottom: 5,
+		marginBottom: 10,
 		fontWeight: 600,
 		overflowWrap: 'break-word',
+		wordBreak: 'break-all',
 		cursor: 'pointer',
+		display: 'flex', 
+		alignItems: 'center',
+		lineHeight: 1,
+
 		'&:hover': {
 			textDecoration: 'underline',
 		},
@@ -481,46 +490,31 @@ export default function Home() {
 		}
 	}
 	
-	const aboutScrollFunction = () => {
+	const chooseScrollFunction = (selectedRef) => {
 		closeMobileDropdown()
-		if (aboutRef.current) {
+		if (selectedRef == 'aboutRef' && aboutRef.current) {
 			window.scrollTo({
 				behavior: "smooth",
 				top: aboutRef.current.offsetTop - 60,
 			});
-		}
-	}
-	
-	const toolScrollFunction = () => {
-		closeMobileDropdown()
-		if (toolRef.current) {
+		} else if (selectedRef == 'toolRef' && toolRef.current) {
 			window.scrollTo({
 				behavior: "smooth",
 				top: toolRef.current.offsetTop - 65,
 			});
-		}
-	}
-	
-	const projectScrollFunction = () => {
-		closeMobileDropdown()
-		if (projectRef.current) {
+		} else if (selectedRef == 'projectRef' && projectRef.current) {
 			window.scrollTo({
 				behavior: "smooth",
 				top: projectRef.current.offsetTop - 60,
 			});
-		}
-	}
-	
-	const reachScrollFunction = () => {
-		closeMobileDropdown()
-		if (reachRef.current) {
+		} else {
 			window.scrollTo({
 				behavior: "smooth",
 				top: reachRef.current.offsetTop,
 			});
 		}
-    }
-
+	}
+	
 	useEffect(() => {
 		const header = document.getElementById("myHeader");
 		const sticky = header.offsetTop + 100;
@@ -539,38 +533,31 @@ export default function Home() {
 		<Layout>
 			<Head>
 				<title>{siteTitle}</title>
-				{/* <link rel="preconnect" href="https://fonts.gstatic.com"> */}
 				<link href="https://fonts.googleapis.com/css2?family=Asap+Condensed&display=swap" rel="stylesheet" />
 			</Head>
 
 			<div ref={headerRef} id="myHeader" className={classes.sticky} >
 				<Header 
-					projectScrollFunction={projectScrollFunction} 
 					closeMobileDropdown={closeMobileDropdown} 
 					mobileRef={mobileRef} 
 					mobileDropDown={mobileDropDown}
 					setMobileDropdown={setMobileDropdown}
 					handleMobileDropdown={handleMobileDropdown}
 					baseScrollFunction={baseScrollFunction}
-					aboutScrollFunction={aboutScrollFunction}
-					toolScrollFunction={toolScrollFunction}
-					reachScrollFunction={reachScrollFunction}
+					chooseScrollFunction={chooseScrollFunction}
 					handleDarkMode={handleDarkMode}
 					darkMode={darkMode}
 				/>
             </div>
             
 			<Header 
-				projectScrollFunction={projectScrollFunction} 
 				closeMobileDropdown={closeMobileDropdown} 
 				mobileRef={mobileRef} 
 				mobileDropDown={mobileDropDown}
 				setMobileDropdown={setMobileDropdown}
 				handleMobileDropdown={handleMobileDropdown}
 				baseScrollFunction={baseScrollFunction}
-				aboutScrollFunction={aboutScrollFunction}
-				toolScrollFunction={toolScrollFunction}
-				reachScrollFunction={reachScrollFunction}
+				chooseScrollFunction={chooseScrollFunction}
 				handleDarkMode={handleDarkMode}
 				darkMode={darkMode}
 			/>
@@ -579,7 +566,7 @@ export default function Home() {
 				<div style={darkMode ? { textAlign: 'center', color: darkText } : {textAlign: 'center'}}>
 					<h1 className={classes.sectionText} >Hello, I am Ayodele.</h1> 
 					<h2 className={classes.secondSectionText}>I'm a Frontend Web Developer based in Lagos.</h2>
-					<h2 className={classes.secondSectionText}>Welcome!!!.</h2>
+					{/* <h2 className={classes.secondSectionText}>Welcome!!!</h2> */}
 				</div>
 
 				<div className={classes.imageContainer}>
@@ -809,14 +796,30 @@ export default function Home() {
 					<div>
 						<p className={classes.contactName} style={ darkMode ? {color: darkText} : {} }>AYODELE OGUNKANMI</p>
 
-						<p className={classes.contactText} style={ darkMode ? {color: darkText} : {} }>ayo4oyo@gmail.com</p>
+						<p className={classes.contactText} style={ darkMode ? {color: darkText } : {} }>
+							<EmailIcon style={{fontSize: '1rem', marginRight: 10}} />
+							ayo4oyo@gmail.com
+						</p>
+
+						<Link href="https://www.github.com/drpompin" passHref>
+							<p className={classes.contactText} style={darkMode ? { color: darkText } : {}}>
+								<GitHubIcon style={{ fontSize: '1rem', marginRight: 10 }} />
+								github.com/drpompin
+							</p>
+						</Link>
 
 						<Link href="https://ayodeleogunkanmi.vercel.app" passHref>
-							<p className={classes.contactText} style={darkMode ? { color: darkText } : {}}>www.ayodeleogunkanmi.vercel.app</p>						
+							<p className={classes.contactText} style={darkMode ? { color: darkText } : {}}>
+								<LanguageOutlinedIcon style={{ fontSize: '1rem', marginRight: 10 }} />
+								ayodeleogunkanmi.vercel.app
+							</p>						
 						</Link>
 
 						<Link href="https://www.linkedin.com/in/ayodele-ogunkanmi/" passHref>
-							<p className={classes.contactText} style={darkMode ? { color: darkText } : {}}>www.linkedin.com/in/ayodele-ogunkanmi/</p>
+							<p className={classes.contactText} style={darkMode ? { color: darkText } : {}}>
+								<LinkedInIcon style={{ fontSize: '1rem', marginRight: 10 }} />
+								linkedin.com/in/ayodele-ogunkanmi/
+							</p>
 						</Link>
 					</div>
 				</div>

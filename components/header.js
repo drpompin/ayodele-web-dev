@@ -140,15 +140,12 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Header({ 
-        projectScrollFunction, 
         closeMobileDropdown, 
         mobileRef, 
         mobileDropDown, 
         handleMobileDropdown,
         baseScrollFunction,
-        aboutScrollFunction,
-        toolScrollFunction,
-        reachScrollFunction,
+        chooseScrollFunction,
         handleDarkMode,
         darkMode
     }) {
@@ -161,10 +158,10 @@ function Header({
                 <HomeOutlinedIcon className={classes.headerIcon} onClick={() => baseScrollFunction()} style={ darkMode ? { color: darkText } : {} } />
 
                 <div className={classes.mainMenu}>
-                    <span variant="outlined" onClick={() => aboutScrollFunction()}  className={classes.menuListItem} style={ darkMode ? { color: darkText } : {} }>Ayodele</span>
-                    <span variant="outlined" onClick={() => toolScrollFunction()} className={classes.menuListItem} style={ darkMode ? { color: darkText } : {} }>Toolbox</span>
-                    <span variant="outlined" onClick={() => projectScrollFunction()} className={classes.menuListItem} style={ darkMode ? { color: darkText } : {} }>Projects</span>
-                    <span variant="outlined" onClick={() => reachScrollFunction()} className={classes.menuListItem} style={darkMode ? { color: darkText } : {}}>Reach Out</span>
+                    <span variant="outlined" onClick={() => chooseScrollFunction('aboutRef')}  className={classes.menuListItem} style={ darkMode ? { color: darkText } : {} }>Ayodele</span>
+                    <span variant="outlined" onClick={() => chooseScrollFunction('toolRef')} className={classes.menuListItem} style={ darkMode ? { color: darkText } : {} }>Toolbox</span>
+                    <span variant="outlined" onClick={() => chooseScrollFunction('projectRef')} className={classes.menuListItem} style={ darkMode ? { color: darkText } : {} }>Projects</span>
+                    <span variant="outlined" onClick={() => chooseScrollFunction('reachRef')} className={classes.menuListItem} style={darkMode ? { color: darkText } : {}}>Reach Out</span>
                     <span variant="outlined" className={classes.menuListItem} style={darkMode ? { color: darkText } : {}}>
                         <Tooltip disableFocusListener title="Download Resume">
                             <a href="/files/Resume.pdf" download="Ayodele-resume.pdf" style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -196,25 +193,25 @@ function Header({
                     </span>
 
                     <List className={classes.mobileMenuList}>
-                        <ListItem onClick={() => aboutScrollFunction()} className={classes.mobileListItem} style={darkMode ? { color: darkText } : {}}>
+                        <ListItem onClick={() => chooseScrollFunction('aboutRef')} className={classes.mobileListItem} style={darkMode ? { color: darkText } : {}}>
                             <ListItemText disableTypography>
                                 Ayodele
                             </ListItemText>
                         </ListItem>
 
-                        <ListItem onClick={() => toolScrollFunction()} className={classes.mobileListItem}style={ darkMode ? { color: darkText } : {} }>
+                        <ListItem onClick={() => chooseScrollFunction('toolRef')} className={classes.mobileListItem}style={ darkMode ? { color: darkText } : {} }>
                             <ListItemText disableTypography>
                                 Toolbox
                             </ListItemText>
                         </ListItem>
 
-                        <ListItem onClick={() => projectScrollFunction()} className={classes.mobileListItem}style={ darkMode ? { color: darkText } : {} }>
+                        <ListItem onClick={() => chooseScrollFunction('projectRef')} className={classes.mobileListItem}style={ darkMode ? { color: darkText } : {} }>
                             <ListItemText disableTypography>
                                 Projects
                             </ListItemText>
                         </ListItem>
 
-                        <ListItem onClick={() => reachScrollFunction()} className={classes.mobileListItem}style={ darkMode ? { color: darkText } : {} }>
+                        <ListItem onClick={() => chooseScrollFunction('reachRef')} className={classes.mobileListItem}style={ darkMode ? { color: darkText } : {} }>
                             <ListItemText disableTypography>
                                 Reach Out
                             </ListItemText>
