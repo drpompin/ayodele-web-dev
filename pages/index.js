@@ -5,13 +5,14 @@ import { makeStyles } from '@material-ui/core/styles'
 import CodeIcon from '@material-ui/icons/Code'
 import LightSpeed from 'react-reveal/LightSpeed'
 import Zoom from 'react-reveal/Zoom'
-import Bounce from 'react-reveal/Bounce'
 import Layout, { siteTitle } from '../components/layout'
 import Header from '../components/header'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import EmailIcon from '@material-ui/icons/Email'
+import ProjectCard from '../components/projectCard'
+
 
 
 const name = 'Ayodele'
@@ -262,38 +263,6 @@ const useStyles = makeStyles((theme) => ({
 		
 	},
 
-	projectCard: {
-		width: '48%',
-		display: 'flex',
-		flexDirection: 'column',
-		borderRadius: 5,
-		alignItems: 'space-between',
-		marginBottom: 50,
-		backgroundColor: '#fff',
-		boxShadow: '0 4px 10px rgba(0,0,0,0.12), 0 4px 10px 0 rgba(0,0,0,0.24)',
-		boxShadow: '1px 1px 5px 0px rgba(11,0,0,0.12), 0 2px 5px 1px rgba(0,0,0,0.24)',
-		transition: 'all 0.5s cubic-bezier(.25,.8,.25,1)',
-		overflow: 'hidden',
-
-		'&:hover': {
-			boxShadow: '0 7px 14px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22)',
-		},
-
-		[theme.breakpoints.down("xs")]: {
-			width: '100%',
-		}
-	},
-
-	projectCardImage: {
-		width: '100%',
-		height: 250,
-		borderBottom: '2px solid lightgrey',
-	},
-
-	projectCardName: {
-
-	},
-
 	projectCardText: {
 		lineHeight: 1.44444444,
 		padding: '10px 20px 20px',
@@ -304,33 +273,6 @@ const useStyles = makeStyles((theme) => ({
 			padding: 10,
 			margin: 0,
 		}
-	},
-
-	projectTechDiv: {
-		margin: 0,
-		fontWeight: 600,
-		padding: '0 20px',
-		textAlign: 'center',
-
-		[theme.breakpoints.down("xs")]: {
-			padding: '0 10px',
-		}
-	},
-
-	projectCardLinkRow: {
-		width: '100%',
-		display: 'flex',
-		justifyContent: 'space-around',
-		padding: '10px 20px 20px',
-
-		[theme.breakpoints.down("xs")]: {
-			padding: '10px 10px 20px',
-			justifyContent: 'space-between',
-		}
-	},
-
-	projectCardLink: {
-		cursor: 'pointer'
 	},
 
 	footerSection: {
@@ -515,6 +457,39 @@ export default function Home() {
 		}
 	}
 	
+	const sendboxText = <p className={classes.projectCardText} style={darkMode ? { color: darkText } : {}}>
+			As a junior frontend developer at <Link href="https://www.sendbox.co" passHref><span className={classes.linkText}>Sendbox</span></Link>,
+			I worked on various company projects, utilizing multiple technologies across the projects. <br/>
+			Some of the work done include login and signup forms, shipment booking workflow,
+			get quote workflow as well as work on the partners dashboard showing all transactions (shipments, rejections, failed transactions).
+	</p>
+
+	const spacesText = <p className={classes.projectCardText} style={darkMode ? { color: darkText } : {}}>
+			Trollbasket is a React-Cart App for an e-commerce store. The app utilizes redux for its state 
+			management and displays the products list on the homepage. <br />
+			It has a dropdown list that allows users to search the products based on selected locations. 
+			It also has a search bar that allows users to search based on texts contained in the product 
+			description or location. The app allows viewing of item details, adding item to cart, increasing 
+			and reducing the quantity of items in the cart, removing items from the cart and navigation to the checkout page.
+	</p>
+
+	const luminText = <p className={classes.projectCardText} style={darkMode ? { color: darkText } : {}}>
+		This project is a coding test I took for a job application. It queries the <Link href="https://store.luminskin.com/products" passHref><span className={classes.linkText}>Luminskin</span></Link> Graphql products
+		API and displays the products the page with all the products and their prices.
+		Clicking 'Add to cart' adds an item to cart and opens the cart. '+' and '-' signs on cart items
+		increase and decrease quantity of cart items respectively, while also changing the total cost of items in the 
+		cart.
+	</p>
+
+	const todoText = <p className={classes.projectCardText} style={darkMode ? { color: darkText } : {}}>
+		This is a todo app to emphasize my understanding of React Components and state in Programming.
+		It's a basic app that adds a todo item when text is entered into the input field followed by Enter.
+		The app adds, marks as complete and deletes an item as is desired of the user.
+	</p>
+
+
+	
+
 	useEffect(() => {
 		const header = document.getElementById("myHeader");
 		const sticky = header.offsetTop + 100;
@@ -689,9 +664,9 @@ export default function Home() {
 
 					<Zoom>
 						{
-							imageUrl.map(imgString => {
+							imageUrl.map((imgString, i) => {
 								return (
-									<div className={classes.toolItem} >
+									<div className={classes.toolItem} key={i}>
 										<span
 											className={classes.toolImg}
 											style={{ backgroundImage: `url("images/${imgString.split(" ")[0]}")` }}
@@ -714,77 +689,43 @@ export default function Home() {
 				</h1>
 				
 				<div className={classes.projectsContainer}>
-					<div className={classes.projectCard} style={darkMode ? { backgroundColor: darkBackground } : {}}>
-						<Bounce>
-							<img 
-								src="images/sendbox.png"
-								className={classes.projectCardImage}
-							/>
-						</Bounce>
-						
-						<p className={classes.projectCardText} style={darkMode ? { color: darkText } : {}}>
-							As a junior frontend developer at <Link href="https://www.sendbox.co" passHref><span className={classes.linkText}>Sendbox</span></Link>,
-							 I worked on various company projects, utilizing multiple technologies across the projects. <br/>
-							  Some of the work done include login and signup forms, shipment booking workflow,
-							  get quote workflow as well as work on the partners dashboard showing all transactions (shipments, rejections, failed transactions). 
-						</p>
+					<ProjectCard 
+						darkMode = {darkMode}
+						imgSrc="images/sendbox.png"
+						projectSummary={sendboxText}
+						projectTechStack="React / Redux / Styled-components / Jest / Enzyme"
+						links={false}
+					/>
 
-						<p className={classes.projectTechDiv} style={darkMode ? { color: darkText } : {}}>
-							React / Redux / Styled-components / Jest / Enzyme
-						</p>
+					<ProjectCard 
+						darkMode = {darkMode}
+						imgSrc= "images/trollbasket.png"
+						projectSummary={spacesText}
+						projectTechStack = "HTML / CSS / React / Redux / Styled-components"
+						links={true}
+						projectLink = "https://ayodele-spaces-react-test.netlify.app/"
+						projectRepo = "https://github.com/drpompin/Spaces-React-Test"
+					/>
 
-						<div className={classes.projectCardLinkRow}>
-						</div>
-					</div>
+					<ProjectCard 
+						darkMode = {darkMode}
+						imgSrc= "images/pangaea.png"
+						projectSummary={luminText}
+						projectTechStack = "HTML5 / React / Graphql / Apollo-client / Styled-components"
+						links={true}
+						projectLink = "https://ayodele-lumin-products.netlify.app/"
+						projectRepo = "https://github.com/drpompin/luminskin-products"
+					/>
 
-					<div className={classes.projectCard} style={darkMode ? { backgroundColor: darkBackground } : {}}>
-						<Bounce>
-							<img
-								src="images/pangaea.png"
-								className={classes.projectCardImage}
-							/>
-						</Bounce>
-
-						<p className={classes.projectCardText} style={darkMode ? { color: darkText } : {}}>
-							This project is a coding test I took for a job application. It queries the <Link href="https://store.luminskin.com/products" passHref><span className={classes.linkText}>Luminskin</span></Link> Graphql products
-							API and displays the products the page with all the products and their prices.
-							Clicking 'Add to cart' adds an item to cart and opens the cart. '+' and '-' signs on cart items
-							 increase and decrease quantity of cart items respectively, while also changing the total cost of items in the 
-							 cart.
-						</p>
-
-						<p className={classes.projectTechDiv} style={darkMode ? { color: darkText } : {}}>
-							HTML5 / React / Graphql / Apollo-client / Styled-components
-						</p>
-
-						<div className={classes.projectCardLinkRow}>
-							<Link href="https://ayodele-lumin-products.netlify.app/" passHref className={classes.projectCardLink}><span className={classes.linkText}>View</span></Link>
-							<Link href="https://github.com/drpompin/luminskin-products" passHref className={classes.projectCardLink}><span className={classes.linkText}>Git Repo</span></Link>
-						</div>
-					</div>
-
-					<div className={classes.projectCard} style={darkMode ? { backgroundColor: darkBackground } : {}}>
-						<Bounce>
-							<img
-								src="images/todo.png"
-								className={classes.projectCardImage}
-							/>
-						</Bounce>
-						<p className={classes.projectCardText} style={darkMode ? { color: darkText } : {}}>
-							This is a todo app to emphasize my understanding of React Components and state in Programming.
-							It's a basic app that adds a todo item when text is entered into the input field followed by Enter.
-							The app adds, marks as complete and deletes an item as is desired of the user.
-						</p>
-
-						<p className={classes.projectTechDiv} style={darkMode ? { color: darkText } : {}}>
-							HTML5 / React / Nextjs / Material-UI
-						</p>
-
-						<div className={classes.projectCardLinkRow}>
-							<Link href="https://ayodele-todo-app.vercel.app/" passHref className={classes.projectCardLink}><span className={classes.linkText}>View</span></Link>
-							<Link href="https://github.com/drpompin/todo-app" passHref className={classes.projectCardLink}><span className={classes.linkText}>Git Repo</span></Link>
-						</div>
-					</div>
+					<ProjectCard 
+						darkMode = {darkMode}
+						imgSrc= "images/todo.png"
+						projectSummary={todoText}
+						projectTechStack = "HTML5 / React / Nextjs / Material-UI"
+						links={true}
+						projectLink = "https://ayodele-todo-app.vercel.app/"
+						projectRepo = "https://github.com/drpompin/todo-app"
+					/>
 				</div>
 			</section>
 
